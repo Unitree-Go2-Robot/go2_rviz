@@ -1,0 +1,9 @@
+<library path="go2_rviz">
+
+  <class name="go2_rviz/Go2 Panel"
+         type="go2_rviz::Go2Panel"
+         base_class_type="rviz_common::Panel">
+    <description>The go2 rviz panel.</description>
+  </class>
+
+</library>
