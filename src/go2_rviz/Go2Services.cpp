@@ -21,67 +21,73 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   // Body Height Section
   QLabel *title_label = new QLabel("<h3 align='center'>Body Height</h3>");
+  title_label->setStyleSheet("font-size: 10px;");
 
   height_slider_ = new QSlider(Qt::Horizontal);
-  height_slider_->setMinimum(-180);  // Representa -0.18
-  height_slider_->setMaximum(30);    // Representa 0.03
-  height_slider_->setValue(2);       // Valor inicial
+  height_slider_->setRange(-180, 30);  // Representa -0.18 a 0.03
+  height_slider_->setValue(2);        // Valor inicial
   height_slider_->setTickInterval(10);
   height_slider_->setTickPosition(QSlider::TicksBelow);
 
   connect(height_slider_, &QSlider::valueChanged, this, &Go2Services::onHeightChanged);
 
-  QGroupBox *body_height_group = new QGroupBox();
   QVBoxLayout *body_height_layout = new QVBoxLayout();
+  body_height_layout->setSpacing(1);
   body_height_layout->addWidget(title_label);
   body_height_layout->addWidget(height_slider_);
+
+  QGroupBox *body_height_group = new QGroupBox();
   body_height_group->setLayout(body_height_layout);
+  body_height_group->setStyleSheet("margin: 5px; padding: 5px;");
 
   layout->addWidget(body_height_group);
 
   // Continuous Gait Section
   QLabel *gait_label = new QLabel("<h3 align='center'>Continuous Gait</h3>");
+  gait_label->setStyleSheet("font-size: 10px;");
 
-  QPushButton* gait_true_button = new QPushButton("True");
-  QPushButton* gait_false_button = new QPushButton("False");
+  QPushButton *gait_true_button = new QPushButton("True");
+  QPushButton *gait_false_button = new QPushButton("False");
+
+  connect(gait_true_button, &QPushButton::clicked, this, [this]() { onContinuousGaitClicked(true); });
+  connect(gait_false_button, &QPushButton::clicked, this, [this]() { onContinuousGaitClicked(false); });
 
   QHBoxLayout *gait_button_layout = new QHBoxLayout();
   gait_button_layout->addWidget(gait_true_button);
   gait_button_layout->addWidget(gait_false_button);
 
-  connect(gait_true_button, &QPushButton::clicked, this, [this]() { onContinuousGaitClicked(true); });
-  connect(gait_false_button, &QPushButton::clicked, this, [this]() { onContinuousGaitClicked(false); });
-
-  QGroupBox *gait_group = new QGroupBox();
   QVBoxLayout *gait_layout = new QVBoxLayout();
+  gait_layout->setSpacing(1);
+  gait_layout->setContentsMargins(1, 1, 1, 1);
   gait_layout->addWidget(gait_label);
   gait_layout->addLayout(gait_button_layout);
+
+  QGroupBox *gait_group = new QGroupBox();
   gait_group->setLayout(gait_layout);
 
   layout->addWidget(gait_group);
 
   // Euler Section
   QLabel *euler_label = new QLabel("<h3 align='center'>Euler</h3>");
+  euler_label->setStyleSheet("font-size: 10px;");
 
   roll_slider_ = new QSlider(Qt::Horizontal);
-  roll_slider_->setMinimum(-750);
-  roll_slider_->setMaximum(750);
+  roll_slider_->setRange(-750, 750);
   roll_slider_->setValue(0);
   roll_slider_->setTickInterval(100);
   roll_slider_->setTickPosition(QSlider::TicksBelow);
 
   pitch_slider_ = new QSlider(Qt::Horizontal);
-  pitch_slider_->setMinimum(-750);
-  pitch_slider_->setMaximum(750);
+  pitch_slider_->setRange(-750, 750);
   pitch_slider_->setValue(0);
   pitch_slider_->setTickInterval(100);
   pitch_slider_->setTickPosition(QSlider::TicksBelow);
 
   yaw_slider_ = new QSlider(Qt::Horizontal);
-  yaw_slider_->setMinimum(-750);
-  yaw_slider_->setMaximum(750);
+  yaw_slider_->setRange(-750, 750);
   yaw_slider_->setValue(0);
   yaw_slider_->setTickInterval(100);
+  yaw_slider_->setTickPosition(QSlider::TicksBelow);
 
   connect(roll_slider_, &QSlider::valueChanged, this, &Go2Services::onEulerChanged);
   connect(pitch_slider_, &QSlider::valueChanged, this, &Go2Services::onEulerChanged);
@@ -89,16 +95,19 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   QGroupBox *euler_group = new QGroupBox();
   QVBoxLayout *euler_layout = new QVBoxLayout();
+  gait_layout->setSpacing(1);
+  gait_layout->setContentsMargins(1, 1, 1, 1);
   euler_layout->addWidget(euler_label);
   euler_layout->addWidget(roll_slider_);
   euler_layout->addWidget(pitch_slider_);
-  euler_layout->addWidget(yaw_slider_);  
+  euler_layout->addWidget(yaw_slider_);
   euler_group->setLayout(euler_layout);
 
   layout->addWidget(euler_group);
 
   // Foot Raise Height Section
   QLabel *foot_raise_label = new QLabel("<h3 align='center'>Foot Raise Height</h3>");
+  foot_raise_label->setStyleSheet("font-size: 10px;");
   foot_raise_slider_ = new QSlider(Qt::Horizontal);
   foot_raise_slider_->setMinimum(-60);  // Representa -0.06
   foot_raise_slider_->setMaximum(30);   // Representa 0.03
@@ -110,6 +119,8 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   QGroupBox *foot_raise_group = new QGroupBox();
   QVBoxLayout *foot_raise_layout = new QVBoxLayout();
+  foot_raise_layout->setSpacing(1);
+  foot_raise_layout->setContentsMargins(1, 1, 1, 1);
   foot_raise_layout->addWidget(foot_raise_label);
   foot_raise_layout->addWidget(foot_raise_slider_);
   foot_raise_group->setLayout(foot_raise_layout);
@@ -118,6 +129,7 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   // Pose Section
   QLabel *pose_label = new QLabel("<h3 align='center'>Pose</h3>");
+  pose_label->setStyleSheet("font-size: 10px;");
 
   QPushButton *pose_true_button = new QPushButton("True");
   QPushButton *pose_false_button = new QPushButton("False");
@@ -131,6 +143,8 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   QGroupBox *pose_group = new QGroupBox();
   QVBoxLayout *pose_layout = new QVBoxLayout();
+  pose_layout->setSpacing(1);
+  pose_layout->setContentsMargins(1, 1, 1, 1);
   pose_layout->addWidget(pose_label);
   pose_layout->addLayout(pose_button_layout);
   pose_group->setLayout(pose_layout);
@@ -139,6 +153,7 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   // Speed Level Section
   QLabel *speed_label = new QLabel("<h3 align='center'>Speed Level</h3>");
+  speed_label->setStyleSheet("font-size: 10px;");
 
   speed_lvl_slider_ = new QSlider(Qt::Horizontal);
   speed_lvl_slider_->setMinimum(-1);
@@ -151,6 +166,8 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   QGroupBox *speed_group = new QGroupBox();
   QVBoxLayout *speed_layout = new QVBoxLayout();
+  speed_layout->setSpacing(1);
+  speed_layout->setContentsMargins(1, 1, 1, 1);
   speed_layout->addWidget(speed_label);
   speed_layout->addWidget(speed_lvl_slider_);
   speed_group->setLayout(speed_layout);
@@ -159,6 +176,7 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   // Switch Gait Section
   QLabel *switch_gait_label = new QLabel("<h3 align='center'>Switch Gait</h3>");
+  switch_gait_label->setStyleSheet("font-size: 10px;");
 
   QPushButton *gait_idle_button = new QPushButton("Idle");
   QPushButton *gait_trot_button = new QPushButton("Trot");
@@ -182,6 +200,8 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   QGroupBox *switch_gait_group = new QGroupBox();
   QVBoxLayout *switch_gait_layout = new QVBoxLayout();
+  switch_gait_layout->setSpacing(1);
+  switch_gait_layout->setContentsMargins(1, 1, 1, 1);
   switch_gait_layout->addWidget(switch_gait_label);
   switch_gait_layout->addWidget(gait_idle_button);
   switch_gait_layout->addLayout(gait_button_layout_01);
@@ -192,6 +212,7 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   // Switch Joystick Section
   QLabel *switch_joystick_label = new QLabel("<h3 align='center'>Switch Joystick</h3>");
+  switch_joystick_label->setStyleSheet("font-size: 10px;");
 
   QPushButton *joystick_true_button = new QPushButton("True");
   QPushButton *joystick_false_button = new QPushButton("False");
@@ -205,6 +226,8 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   QGroupBox *switch_joystick_group = new QGroupBox();
   QVBoxLayout *switch_joystick_layout = new QVBoxLayout();
+  switch_joystick_layout->setSpacing(1);
+  switch_joystick_layout->setContentsMargins(1, 1, 1, 1);
   switch_joystick_layout->addWidget(switch_joystick_label);
   switch_joystick_layout->addLayout(joystick_button_layout);
   switch_joystick_group->setLayout(switch_joystick_layout);

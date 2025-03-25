@@ -33,9 +33,6 @@ Go2Modes::Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent)
   QPushButton* wallow_button_ = new QPushButton("Wallow");
   QPushButton* dance1_button_ = new QPushButton("Dance1");
   QPushButton* dance2_button_ = new QPushButton("Dance2");
-  QPushButton* get_body_height_button_ = new QPushButton("GetBodyHeight");
-  QPushButton* get_foot_raise_height_button_ = new QPushButton("GetFootRaiseHeight");
-  QPushButton* get_speed_level_button_ = new QPushButton("GetSpeedLevel");
   QPushButton* switch_joystick_button_ = new QPushButton("SwitchJoystick");
   QPushButton* pose_button_ = new QPushButton("Pose");
   QPushButton* scrape_button_ = new QPushButton("Scrape");
@@ -43,7 +40,6 @@ Go2Modes::Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent)
   QPushButton* front_jump_button_ = new QPushButton("FrontJump");
   QPushButton* front_pounce_button_ = new QPushButton("FrontPounce");
   QPushButton* wiggle_hips_button_ = new QPushButton("WiggleHips");
-  QPushButton* get_state_button_ = new QPushButton("GetState");
   QPushButton* economic_gait_button_ = new QPushButton("EconomicGait");
   QPushButton* finger_heart_button_ = new QPushButton("FingerHeart");
   QPushButton* dance3_button_ = new QPushButton("Dance3");
@@ -83,9 +79,6 @@ Go2Modes::Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent)
   connect(wallow_button_, &QPushButton::clicked, this, [this]() { onModeChanged("wallow"); });
   connect(dance1_button_, &QPushButton::clicked, this, [this]() { onModeChanged("dance1"); });
   connect(dance2_button_, &QPushButton::clicked, this, [this]() { onModeChanged("dance2"); });
-  connect(get_body_height_button_, &QPushButton::clicked, this, [this]() { onModeChanged("get_body_height"); });
-  connect(get_foot_raise_height_button_, &QPushButton::clicked, this, [this]() { onModeChanged("get_foot_raise_height"); });
-  connect(get_speed_level_button_, &QPushButton::clicked, this, [this]() { onModeChanged("get_speed_level"); });
   connect(switch_joystick_button_, &QPushButton::clicked, this, [this]() { onModeChanged("switch_joystick"); });
   connect(pose_button_, &QPushButton::clicked, this, [this]() { onModeChanged("pose"); });
   connect(scrape_button_, &QPushButton::clicked, this, [this]() { onModeChanged("scrape"); });
@@ -93,7 +86,6 @@ Go2Modes::Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent)
   connect(front_jump_button_, &QPushButton::clicked, this, [this]() { onModeChanged("front_jump"); });
   connect(front_pounce_button_, &QPushButton::clicked, this, [this]() { onModeChanged("front_pounce"); });
   connect(wiggle_hips_button_, &QPushButton::clicked, this, [this]() { onModeChanged("wiggle_hips"); });
-  connect(get_state_button_, &QPushButton::clicked, this, [this]() { onModeChanged("get_state"); });
   connect(economic_gait_button_, &QPushButton::clicked, this, [this]() { onModeChanged("economic_gait"); });
   connect(finger_heart_button_, &QPushButton::clicked, this, [this]() { onModeChanged("finger_heart"); });
   connect(dance3_button_, &QPushButton::clicked, this, [this]() { onModeChanged("dance3"); });
@@ -119,10 +111,10 @@ Go2Modes::Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent)
     sit_button_, rise_sit_button_, switch_gait_button_, trigger_button_,
     body_height_button_, foot_raise_height_button_, speed_level_button_, hello_button_,
     stretch_button_, trajectory_follow_button_, continuous_gait_button_, content_button_,
-    wallow_button_, dance1_button_, dance2_button_, get_body_height_button_,
-    get_foot_raise_height_button_, get_speed_level_button_, switch_joystick_button_, pose_button_,
+    wallow_button_, dance1_button_, dance2_button_,
+    switch_joystick_button_, pose_button_,
     scrape_button_, front_flip_button_, front_jump_button_, front_pounce_button_,
-    wiggle_hips_button_, get_state_button_, economic_gait_button_, finger_heart_button_,
+    wiggle_hips_button_, economic_gait_button_, finger_heart_button_,
     dance3_button_, dance4_button_, hop_spin_left_button_, hop_spin_right_button_,
     left_flip_button_, back_flip_button_, free_walk_button_, free_bound_button_,
     free_jump_button_, free_avoid_button_, walk_stair_button_, walk_up_right_button_, cross_step_button_
