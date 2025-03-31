@@ -1,0 +1,5 @@
+repositories:
+  go2_interfaces:
+    type: git
+    url: https://github.com/Unitree-Go2-Robot/go2_interfaces.git
+    version: humble
