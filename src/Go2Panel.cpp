@@ -15,6 +15,7 @@
 #include "go2_rviz/Go2Panel.hpp"
 #include "go2_rviz/Go2Services.hpp"
 #include "go2_rviz/Go2Modes.hpp"
+#include "go2_rviz/Go2ObstaclesAvoidance.hpp"
 
 #include <QtConcurrent/QtConcurrent>
 #include <QVBoxLayout>
@@ -43,16 +44,14 @@ Go2Panel::Go2Panel(QWidget * parent)
   // Crear las pestañas
   Go2Services * services_tab = new Go2Services(node_);
   Go2Modes * modes_tab = new Go2Modes(node_);
-  QWidget * obstacles_tab = new QWidget();
+  Go2ObstaclesAvoidance * obstacles_tab = new Go2ObstaclesAvoidance(node_);
   QWidget * tts_tab = new QWidget();
   QWidget * vui_tab = new QWidget();
 
   // Layouts para cada pestaña
-  QVBoxLayout * obstacles_layout = new QVBoxLayout(obstacles_tab);
   QVBoxLayout * tts_layout = new QVBoxLayout(tts_tab);
   QVBoxLayout * vui_layout = new QVBoxLayout(vui_tab);
 
-  obstacles_tab->setLayout(obstacles_layout);
   tts_tab->setLayout(tts_layout);
   vui_tab->setLayout(vui_layout);
 
