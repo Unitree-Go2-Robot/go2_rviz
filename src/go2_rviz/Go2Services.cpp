@@ -18,6 +18,9 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
   switch_joystick_client_ = node_->create_client<go2_interfaces::srv::SwitchJoystick>("/switch_joystick");
 
   QVBoxLayout *layout = new QVBoxLayout(this);
+  QWidget *container = new QWidget();
+  QScrollArea *scroll_area = new QScrollArea(this);
+  scroll_area->setWidgetResizable(true);
 
   // Body Height Section
   QLabel *title_label = new QLabel("<h3 align='center'>Body Height</h3>");
@@ -234,7 +237,13 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent)
 
   layout->addWidget(switch_joystick_group);
 
-  setLayout(layout);
+  container->setLayout(layout);
+  scroll_area->setWidget(container);
+
+  QVBoxLayout *main_layout = new QVBoxLayout(this);
+  main_layout->addWidget(scroll_area);
+
+  setLayout(main_layout);
 }
 
 Go2Services::~Go2Services()

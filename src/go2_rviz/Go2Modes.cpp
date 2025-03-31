@@ -104,6 +104,9 @@ Go2Modes::Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent)
 
 
   QVBoxLayout *layout = new QVBoxLayout(this);
+  QWidget *container = new QWidget(this);
+  QScrollArea *scroll_area = new QScrollArea(this); 
+  scroll_area->setWidgetResizable(true);
 
   QList<QPushButton*> buttons = {
     damp_button_, balance_stand_button_, stop_move_button_, stand_up_button_,
@@ -132,7 +135,13 @@ Go2Modes::Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent)
     layout->addLayout(row); 
   }
 
-  setLayout(layout);
+  container->setLayout(layout);
+  scroll_area->setWidget(container);  
+
+  QVBoxLayout *main_layout = new QVBoxLayout(this);
+  main_layout->addWidget(scroll_area);
+
+  setLayout(main_layout);
 }
 
 Go2Modes::~Go2Modes()

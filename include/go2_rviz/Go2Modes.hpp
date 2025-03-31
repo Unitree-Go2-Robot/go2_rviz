@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QScrollArea>
 #include <rclcpp/rclcpp.hpp>
 #include <go2_interfaces/srv/mode.hpp>
 

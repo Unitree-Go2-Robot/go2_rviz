@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QSlider>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QGroupBox>
 #include <rclcpp/rclcpp.hpp>
 #include <go2_interfaces/srv/body_height.hpp>
