@@ -29,6 +29,7 @@ set(go2_rviz_headers_to_moc
   include/go2_rviz/Go2Modes.hpp
   include/go2_rviz/Go2Panel.hpp
   include/go2_rviz/Go2ObstaclesAvoidance.hpp
+  include/go2_rviz/Go2VUI.hpp
 )
 
 include_directories(
@@ -41,6 +42,7 @@ add_library(${library_name} SHARED
   src/go2_rviz/Go2Services.cpp
   src/go2_rviz/Go2Modes.cpp
   src/go2_rviz/Go2ObstaclesAvoidance.cpp
+  src/go2_rviz/Go2VUI.cpp
   src/Go2Panel.cpp
   ${go2_rviz_headers_to_moc}
 )

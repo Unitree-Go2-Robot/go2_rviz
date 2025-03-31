@@ -16,6 +16,7 @@
 #include "go2_rviz/Go2Services.hpp"
 #include "go2_rviz/Go2Modes.hpp"
 #include "go2_rviz/Go2ObstaclesAvoidance.hpp"
+#include "go2_rviz/Go2VUI.hpp"
 
 #include <QtConcurrent/QtConcurrent>
 #include <QVBoxLayout>
@@ -45,15 +46,13 @@ Go2Panel::Go2Panel(QWidget * parent)
   Go2Services * services_tab = new Go2Services(node_);
   Go2Modes * modes_tab = new Go2Modes(node_);
   Go2ObstaclesAvoidance * obstacles_tab = new Go2ObstaclesAvoidance(node_);
+  Go2VUI * vui_tab = new Go2VUI(node_);
   QWidget * tts_tab = new QWidget();
-  QWidget * vui_tab = new QWidget();
 
   // Layouts para cada pestaña
   QVBoxLayout * tts_layout = new QVBoxLayout(tts_tab);
-  QVBoxLayout * vui_layout = new QVBoxLayout(vui_tab);
 
   tts_tab->setLayout(tts_layout);
-  vui_tab->setLayout(vui_layout);
 
   // Agregar pestañas al QTabWidget
   tab_widget_->addTab(services_tab, "Services");
