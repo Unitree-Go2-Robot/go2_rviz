@@ -25,5 +25,6 @@ jobs:
       - name: Build ROS 2 package
         uses: ros-tooling/action-ros-ci@0.3.13
         with:
-          package-name: go2_rviz
+          package-name: go2_rviz go2_interfaces
+          vcs-repo-file-url: https://raw.githubusercontent.com/Unitree-Go2-Robot/go2_rviz/refs/heads/humble-devel/dependencies.repos
           target-ros2-distro: humble
