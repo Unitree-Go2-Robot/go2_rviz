@@ -19,33 +19,34 @@
 namespace go2_rviz
 {
 
-  Go2TTS::Go2TTS(rclcpp::Node::SharedPtr node, QWidget *parent)
+Go2TTS::Go2TTS(rclcpp::Node::SharedPtr node, QWidget * parent)
 : QWidget(parent), node_(node)
 {
   tts_client_ = node_->create_client<go2_interfaces::srv::Say>("/say");
 
-  QVBoxLayout *layout = new QVBoxLayout();
-  QWidget *container = new QWidget();
-  QScrollArea *scroll_area = new QScrollArea(this);
+  QVBoxLayout * layout = new QVBoxLayout();
+  QWidget * container = new QWidget();
+  QScrollArea * scroll_area = new QScrollArea(this);
   scroll_area->setWidgetResizable(true);
 
   // Sección TTS
-  QLabel *tts_label = new QLabel("<h3 align='center'>TTS</h3>");
+  QLabel * tts_label = new QLabel("<h3 align='center'>TTS</h3>");
   tts_label->setStyleSheet("font-size: 10px;");
 
-  QLineEdit *tts_input = new QLineEdit();
+  QLineEdit * tts_input = new QLineEdit();
   tts_input->setPlaceholderText("Enter the text to say...");
 
-  QPushButton *tts_button = new QPushButton("Say");
-  connect(tts_button, &QPushButton::clicked, this, [this, tts_input]() {
+  QPushButton * tts_button = new QPushButton("Say");
+  connect(
+    tts_button, &QPushButton::clicked, this, [this, tts_input]() {
       auto request = std::make_shared<go2_interfaces::srv::Say::Request>();
       request->text = tts_input->text().toStdString();
 
       tts_client_->async_send_request(request);
-  });
+    });
 
-  QGroupBox *tts_group = new QGroupBox();
-  QVBoxLayout *tts_layout = new QVBoxLayout();
+  QGroupBox * tts_group = new QGroupBox();
+  QVBoxLayout * tts_layout = new QVBoxLayout();
   tts_layout->setSpacing(1);
   tts_layout->setContentsMargins(1, 1, 1, 1);
   tts_layout->addWidget(tts_label);
@@ -58,7 +59,7 @@ namespace go2_rviz
   container->setLayout(layout);
   scroll_area->setWidget(container);
 
-  QVBoxLayout *main_layout = new QVBoxLayout(this);
+  QVBoxLayout * main_layout = new QVBoxLayout(this);
   main_layout->addWidget(scroll_area);
 
   setLayout(main_layout);

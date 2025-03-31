@@ -60,7 +60,6 @@ protected:
   QVBoxLayout * layout_;
   QTabWidget * tab_widget_;
 
-
 private:
   rclcpp::Node::SharedPtr node_;
 

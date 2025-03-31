@@ -19,19 +19,19 @@
 namespace go2_rviz
 {
 
-  Go2VUI::Go2VUI(rclcpp::Node::SharedPtr node, QWidget *parent)
+Go2VUI::Go2VUI(rclcpp::Node::SharedPtr node, QWidget * parent)
 : QWidget(parent), node_(node)
 {
   brightness_client_ = node_->create_client<go2_interfaces::srv::SetBrightness>("/set_brightness");
   volume_client_ = node_->create_client<go2_interfaces::srv::SetVolume>("/set_volume");
 
-  QVBoxLayout *layout = new QVBoxLayout(this);
-  QWidget *container = new QWidget();
-  QScrollArea *scroll_area = new QScrollArea(this);
+  QVBoxLayout * layout = new QVBoxLayout(this);
+  QWidget * container = new QWidget();
+  QScrollArea * scroll_area = new QScrollArea(this);
   scroll_area->setWidgetResizable(true);
 
   // Brightness Section
-  QLabel *brightness_label = new QLabel("<h3 align='center'>Brightness</h3>");
+  QLabel * brightness_label = new QLabel("<h3 align='center'>Brightness</h3>");
   brightness_label->setStyleSheet("font-size: 10px;");
   brightness_slider_ = new QSlider(Qt::Horizontal);
   brightness_slider_->setMinimum(0);
@@ -42,8 +42,8 @@ namespace go2_rviz
 
   connect(brightness_slider_, &QSlider::valueChanged, this, &Go2VUI::onBrightnessChanged);
 
-  QGroupBox *brightness_group = new QGroupBox();
-  QVBoxLayout *brightness_layout = new QVBoxLayout();
+  QGroupBox * brightness_group = new QGroupBox();
+  QVBoxLayout * brightness_layout = new QVBoxLayout();
   brightness_layout->setSpacing(1);
   brightness_layout->setContentsMargins(1, 1, 1, 1);
   brightness_layout->addWidget(brightness_label);
@@ -53,7 +53,7 @@ namespace go2_rviz
   layout->addWidget(brightness_group);
 
   // Volume Section
-  QLabel *volume_label = new QLabel("<h3 align='center'>Volume</h3>");
+  QLabel * volume_label = new QLabel("<h3 align='center'>Volume</h3>");
   volume_label->setStyleSheet("font-size: 10px;");
   volume_slider_ = new QSlider(Qt::Horizontal);
   volume_slider_->setMinimum(0);
@@ -64,8 +64,8 @@ namespace go2_rviz
 
   connect(volume_slider_, &QSlider::valueChanged, this, &Go2VUI::onVolumeChanged);
 
-  QGroupBox *volume_group = new QGroupBox();
-  QVBoxLayout *volume_layout = new QVBoxLayout();
+  QGroupBox * volume_group = new QGroupBox();
+  QVBoxLayout * volume_layout = new QVBoxLayout();
   volume_layout->setSpacing(1);
   volume_layout->setContentsMargins(1, 1, 1, 1);
   volume_layout->addWidget(volume_label);
@@ -77,7 +77,7 @@ namespace go2_rviz
   container->setLayout(layout);
   scroll_area->setWidget(container);
 
-  QVBoxLayout *main_layout = new QVBoxLayout(this);
+  QVBoxLayout * main_layout = new QVBoxLayout(this);
   main_layout->addWidget(scroll_area);
 
   setLayout(main_layout);

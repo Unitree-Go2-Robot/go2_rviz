@@ -34,18 +34,18 @@ class Go2ObstaclesAvoidance : public QWidget
   Q_OBJECT
 
 public:
-  explicit Go2ObstaclesAvoidance(rclcpp::Node::SharedPtr node, QWidget *parent = nullptr);
+  explicit Go2ObstaclesAvoidance(rclcpp::Node::SharedPtr node, QWidget * parent = nullptr);
   ~Go2ObstaclesAvoidance();
 
 private slots:
   void onSwitchChanged(int flag);
 
-
 private:
   rclcpp::Node::SharedPtr node_;
 
   // Service clients
-  rclcpp::Client<go2_interfaces::srv::SetSwitchObstaclesAvoidance>::SharedPtr switch_obstacles_avoidance_client_;
+  rclcpp::Client<go2_interfaces::srv::SetSwitchObstaclesAvoidance>::SharedPtr
+    switch_obstacles_avoidance_client_;
 };
 
 }  // namespace go2_rviz

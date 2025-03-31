@@ -33,7 +33,7 @@ class Go2TTS : public QWidget
   Q_OBJECT
 
 public:
-  explicit Go2TTS(rclcpp::Node::SharedPtr node, QWidget *parent = nullptr);
+  explicit Go2TTS(rclcpp::Node::SharedPtr node, QWidget * parent = nullptr);
   ~Go2TTS();
 
 private slots:

@@ -35,7 +35,7 @@ class Go2VUI : public QWidget
   Q_OBJECT
 
 public:
-  explicit Go2VUI(rclcpp::Node::SharedPtr node, QWidget *parent = nullptr);
+  explicit Go2VUI(rclcpp::Node::SharedPtr node, QWidget * parent = nullptr);
   ~Go2VUI();
 
 private slots:
@@ -50,8 +50,8 @@ private:
   rclcpp::Client<go2_interfaces::srv::SetVolume>::SharedPtr volume_client_;
 
   // UI Elements
-  QSlider *brightness_slider_;
-  QSlider *volume_slider_;
+  QSlider * brightness_slider_;
+  QSlider * volume_slider_;
 };
 
 }  // namespace go2_rviz

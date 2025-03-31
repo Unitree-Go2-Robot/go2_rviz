@@ -26,7 +26,7 @@ class Go2Services : public QWidget
   Q_OBJECT
 
 public:
-  explicit Go2Services(rclcpp::Node::SharedPtr node, QWidget *parent = nullptr);
+  explicit Go2Services(rclcpp::Node::SharedPtr node, QWidget * parent = nullptr);
   ~Go2Services();
 
 private slots:
@@ -53,18 +53,18 @@ private:
   rclcpp::Client<go2_interfaces::srv::SwitchJoystick>::SharedPtr switch_joystick_client_;
 
   // UI Elements
-  QSlider *height_slider_;
+  QSlider * height_slider_;
 
-  QSlider *roll_slider_;
-  QSlider *pitch_slider_;
-  QSlider *yaw_slider_;
+  QSlider * roll_slider_;
+  QSlider * pitch_slider_;
+  QSlider * yaw_slider_;
 
-  QSlider *foot_raise_slider_;
+  QSlider * foot_raise_slider_;
 
-  QSlider *speed_lvl_slider_;
+  QSlider * speed_lvl_slider_;
 
-  QPushButton *joystick_true_button_;
-  QPushButton *joystick_false_button_;
+  QPushButton * joystick_true_button_;
+  QPushButton * joystick_false_button_;
 };
 
 }  // namespace go2_rviz

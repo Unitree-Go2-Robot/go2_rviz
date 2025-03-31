@@ -52,7 +52,7 @@ Go2Panel::Go2Panel(QWidget * parent)
 
   // Agregar pestañas al QTabWidget
   tab_widget_->addTab(services_tab, "Services");
-  tab_widget_->addTab(modes_tab, "Modes");  
+  tab_widget_->addTab(modes_tab, "Modes");
   tab_widget_->addTab(obstacles_tab, "Obstacles Avoidance");
   tab_widget_->addTab(tts_tab, "TTS");
   tab_widget_->addTab(vui_tab, "VUI");

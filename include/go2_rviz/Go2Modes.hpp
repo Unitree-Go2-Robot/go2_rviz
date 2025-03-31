@@ -32,7 +32,7 @@ class Go2Modes : public QWidget
   Q_OBJECT
 
 public:
-  explicit Go2Modes(rclcpp::Node::SharedPtr node, QWidget *parent = nullptr);
+  explicit Go2Modes(rclcpp::Node::SharedPtr node, QWidget * parent = nullptr);
   ~Go2Modes();
 
 private slots:
