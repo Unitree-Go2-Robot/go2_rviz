@@ -67,7 +67,7 @@ private:
   QLabel * yaw_value_label_;
 
   QSlider * foot_raise_slider_;
-  QLabel* foot_raise_current_value_label_;
+  QLabel * foot_raise_current_value_label_;
 
   QPushButton * pose_true_button_;
   QPushButton * pose_false_button_;

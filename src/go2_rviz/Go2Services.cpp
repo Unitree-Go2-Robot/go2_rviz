@@ -71,7 +71,9 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget * parent)
   gait_false_button_ = new QPushButton("False");
   gait_false_button_->setStyleSheet("background-color: green;");
 
-  connect(gait_true_button_, &QPushButton::clicked, this, [this]() {onContinuousGaitClicked(true);});
+  connect(
+    gait_true_button_, &QPushButton::clicked, this,
+    [this]() {onContinuousGaitClicked(true);});
   connect(
     gait_false_button_, &QPushButton::clicked, this,
     [this]() {onContinuousGaitClicked(false);});
@@ -146,7 +148,7 @@ Go2Services::Go2Services(rclcpp::Node::SharedPtr node, QWidget * parent)
   euler_current_value_layout->addWidget(pitch_value_label_);
   euler_current_value_layout->addStretch();
   euler_current_value_layout->addWidget(yaw_value_label_);
-  euler_current_value_layout->addStretch(); 
+  euler_current_value_layout->addStretch();
 
   connect(roll_slider_, &QSlider::valueChanged, this, &Go2Services::onEulerChanged);
   connect(pitch_slider_, &QSlider::valueChanged, this, &Go2Services::onEulerChanged);
@@ -395,7 +397,7 @@ void Go2Services::onEulerChanged()
 
 void Go2Services::onFootRaiseHeightChanged(int value)
 {
-  float height = static_cast<float>(value) / 1000.0f; 
+  float height = static_cast<float>(value) / 1000.0f;
   foot_raise_current_value_label_->setText(QString::number(height));
 
   auto request = std::make_shared<go2_interfaces::srv::FootRaiseHeight::Request>();
