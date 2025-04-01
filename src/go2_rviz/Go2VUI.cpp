@@ -40,14 +40,29 @@ Go2VUI::Go2VUI(rclcpp::Node::SharedPtr node, QWidget * parent)
   brightness_slider_->setTickInterval(1);
   brightness_slider_->setTickPosition(QSlider::TicksBelow);
 
+  QLabel * min_brightness_label = new QLabel("0");
+  QLabel * max_brightness_label = new QLabel("10");
+  brightness_current_value_label_ = new QLabel(QString::number(0));
+
   connect(brightness_slider_, &QSlider::valueChanged, this, &Go2VUI::onBrightnessChanged);
+
+  QHBoxLayout * brightness_slider_layout = new QHBoxLayout();
+  brightness_slider_layout->addWidget(min_brightness_label);
+  brightness_slider_layout->addWidget(brightness_slider_);
+  brightness_slider_layout->addWidget(max_brightness_label);
+
+  QHBoxLayout * brightness_current_value_layout = new QHBoxLayout();
+  brightness_current_value_layout->addStretch();
+  brightness_current_value_layout->addWidget(brightness_current_value_label_);
+  brightness_current_value_layout->addStretch();
 
   QGroupBox * brightness_group = new QGroupBox();
   QVBoxLayout * brightness_layout = new QVBoxLayout();
   brightness_layout->setSpacing(1);
   brightness_layout->setContentsMargins(1, 1, 1, 1);
   brightness_layout->addWidget(brightness_label);
-  brightness_layout->addWidget(brightness_slider_);
+  brightness_layout->addLayout(brightness_current_value_layout);
+  brightness_layout->addLayout(brightness_slider_layout);
   brightness_group->setLayout(brightness_layout);
 
   layout->addWidget(brightness_group);
@@ -62,14 +77,29 @@ Go2VUI::Go2VUI(rclcpp::Node::SharedPtr node, QWidget * parent)
   volume_slider_->setTickInterval(1);
   volume_slider_->setTickPosition(QSlider::TicksBelow);
 
+  QLabel * min_volume_label = new QLabel("0");
+  QLabel * max_volume_label = new QLabel("10");
+  volume_current_value_label_ = new QLabel(QString::number(5));
+
   connect(volume_slider_, &QSlider::valueChanged, this, &Go2VUI::onVolumeChanged);
+
+  QHBoxLayout * volume_slider_layout = new QHBoxLayout();
+  volume_slider_layout->addWidget(min_volume_label);
+  volume_slider_layout->addWidget(volume_slider_);
+  volume_slider_layout->addWidget(max_volume_label);
+
+  QHBoxLayout * volume_current_value_layout = new QHBoxLayout();
+  volume_current_value_layout->addStretch();
+  volume_current_value_layout->addWidget(volume_current_value_label_);
+  volume_current_value_layout->addStretch();
 
   QGroupBox * volume_group = new QGroupBox();
   QVBoxLayout * volume_layout = new QVBoxLayout();
   volume_layout->setSpacing(1);
   volume_layout->setContentsMargins(1, 1, 1, 1);
   volume_layout->addWidget(volume_label);
-  volume_layout->addWidget(volume_slider_);
+  volume_layout->addLayout(volume_current_value_layout);
+  volume_layout->addLayout(volume_slider_layout);
   volume_group->setLayout(volume_layout);
 
   layout->addWidget(volume_group);
@@ -89,6 +119,8 @@ Go2VUI::~Go2VUI()
 
 void Go2VUI::onBrightnessChanged(int value)
 {
+  brightness_current_value_label_->setText(QString::number(value));
+
   auto request = std::make_shared<go2_interfaces::srv::SetBrightness::Request>();
   request->brightness = value;
 
@@ -97,6 +129,8 @@ void Go2VUI::onBrightnessChanged(int value)
 
 void Go2VUI::onVolumeChanged(int value)
 {
+  volume_current_value_label_->setText(QString::number(value));
+
   auto request = std::make_shared<go2_interfaces::srv::SetVolume::Request>();
   request->volume = value;
 

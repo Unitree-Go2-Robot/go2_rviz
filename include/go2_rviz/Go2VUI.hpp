@@ -51,7 +51,10 @@ private:
 
   // UI Elements
   QSlider * brightness_slider_;
+  QLabel * brightness_current_value_label_;
+
   QSlider * volume_slider_;
+  QLabel * volume_current_value_label_;
 };
 
 }  // namespace go2_rviz

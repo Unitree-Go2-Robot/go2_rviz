@@ -35,15 +35,16 @@ Go2ObstaclesAvoidance::Go2ObstaclesAvoidance(rclcpp::Node::SharedPtr node, QWidg
   QLabel * switch_label = new QLabel("<h3 align='center'>Switch Obstacles Avoidance</h3>");
   switch_label->setStyleSheet("font-size: 10px;");
 
-  QPushButton * switch_true_button = new QPushButton("True");
-  QPushButton * switch_false_button = new QPushButton("False");
+  switch_true_button_ = new QPushButton("True");
+  switch_false_button_ = new QPushButton("False");
+  switch_true_button_->setStyleSheet("background-color: green;");
 
-  connect(switch_true_button, &QPushButton::clicked, this, [this]() {onSwitchChanged(1);});
-  connect(switch_false_button, &QPushButton::clicked, this, [this]() {onSwitchChanged(0);});
+  connect(switch_true_button_, &QPushButton::clicked, this, [this]() {onSwitchChanged(1);});
+  connect(switch_false_button_, &QPushButton::clicked, this, [this]() {onSwitchChanged(0);});
 
   QHBoxLayout * switch_button_layout = new QHBoxLayout();
-  switch_button_layout->addWidget(switch_true_button);
-  switch_button_layout->addWidget(switch_false_button);
+  switch_button_layout->addWidget(switch_true_button_);
+  switch_button_layout->addWidget(switch_false_button_);
 
   QVBoxLayout * switch_layout = new QVBoxLayout();
   switch_layout->setSpacing(1);
@@ -73,6 +74,14 @@ void Go2ObstaclesAvoidance::onSwitchChanged(int flag)
 {
   auto request = std::make_shared<go2_interfaces::srv::SetSwitchObstaclesAvoidance::Request>();
   request->enable = flag;
+
+  if (flag == 1) {
+    switch_true_button_->setStyleSheet("background-color: green;");
+    switch_false_button_->setStyleSheet("");
+  } else {
+    switch_true_button_->setStyleSheet("");
+    switch_false_button_->setStyleSheet("background-color: green;");
+  }
 
   switch_obstacles_avoidance_client_->async_send_request(request);
 }

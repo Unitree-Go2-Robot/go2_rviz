@@ -54,14 +54,31 @@ private:
 
   // UI Elements
   QSlider * height_slider_;
+  QLabel * body_height_current_value_label_;
+
+  QPushButton * gait_true_button_;
+  QPushButton * gait_false_button_;
 
   QSlider * roll_slider_;
   QSlider * pitch_slider_;
   QSlider * yaw_slider_;
+  QLabel * roll_value_label_;
+  QLabel * pitch_value_label_;
+  QLabel * yaw_value_label_;
 
   QSlider * foot_raise_slider_;
+  QLabel* foot_raise_current_value_label_;
+
+  QPushButton * pose_true_button_;
+  QPushButton * pose_false_button_;
 
   QSlider * speed_lvl_slider_;
+  QLabel * speed_current_value_label_;
+
+  QPushButton * gait_trot_button_;
+  QPushButton * gait_trot_run_button_;
+  QPushButton * gait_forward_climb_button_;
+  QPushButton * gait_reverse_climb_button_;
 
   QPushButton * joystick_true_button_;
   QPushButton * joystick_false_button_;

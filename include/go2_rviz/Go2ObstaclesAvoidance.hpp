@@ -46,6 +46,10 @@ private:
   // Service clients
   rclcpp::Client<go2_interfaces::srv::SetSwitchObstaclesAvoidance>::SharedPtr
     switch_obstacles_avoidance_client_;
+
+  // UI Elements
+  QPushButton * switch_true_button_;
+  QPushButton * switch_false_button_;
 };
 
 }  // namespace go2_rviz
